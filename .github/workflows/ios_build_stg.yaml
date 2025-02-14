@@ -84,7 +84,7 @@ jobs:
           echo $EXPORT_OPTIONS > ios/Runner/ExportOptions.plist
           flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist --build-number=$GITHUB_RUN_NUMBER
       - name: collect ipa artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: release-ipa
           path: build/ios/ipa/*.ipa
@@ -98,7 +98,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Get release-ipa from artifacts
         uses: actions/download-artifact@v2
         with:
