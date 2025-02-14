@@ -22,7 +22,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: "3.19.5"
+          flutter-version: "3.27.0"
       - name: check version
         run: flutter --version
       - name: Setup packages
@@ -36,7 +36,7 @@ jobs:
         run: |
           curl -sL https://firebase.tools | bash
           dart pub global activate flutterfire_cli
-          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "com.exmple.example-app" -a "com.example.example_app" -m "com.example.example-app"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
+          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "com.studiomk.flutterSample" -a "com.studiomk.flutter_sample" -m "com.studiomk.flutterSample"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
       - name: run analyze
         run: flutter analyze
       - name: run test
