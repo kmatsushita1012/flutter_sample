@@ -83,6 +83,8 @@ jobs:
         run: |
           echo $EXPORT_OPTIONS > ios/Runner/ExportOptions.plist
           flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+      - name: Find IPA file
+        run: tree ./build/ios
       - name: collect ipa artifacts
         uses: actions/upload-artifact@v4
         with:
