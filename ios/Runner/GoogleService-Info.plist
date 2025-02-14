@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.flutterSample</string>
+	<string>com.studiomk.flutterSample</string>
 	<key>PROJECT_ID</key>
 	<string>fluttersample-29ba1</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:859187312433:ios:0171a8bb32913c35f96210</string>
+	<string>1:859187312433:ios:dcc67ad36163587bf96210</string>
 </dict>
 </plist>
