@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.APPSTORE_CERT_BASE64 }}
@@ -64,7 +64,7 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: stable
-          flutter-version: "3.19.5"
+          flutter-version: "3.27.0"
       - name: Setup packages
         run: |
           flutter pub get
