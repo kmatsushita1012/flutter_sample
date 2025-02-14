@@ -47,3 +47,4 @@ app.*.map.json
 
 # 追加
 .secrets
+/ios/Runner/ExportOptions.plist
