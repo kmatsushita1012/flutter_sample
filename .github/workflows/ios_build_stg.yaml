@@ -76,7 +76,7 @@ jobs:
         run: |
           curl -sL https://firebase.tools | bash
           dart pub global activate flutterfire_cli
-          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios" -i "com.example.example-app" -a "com.example.example_app" -m "com.example.pedometer-app"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
+          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "com.studiomk.flutterSample" -a "com.studiomk.flutter_sample" -m "com.example.example-app"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
       - name: Building IPA
         env:
           EXPORT_OPTIONS: ${{ secrets.EXPORT_OPTIONS }}
