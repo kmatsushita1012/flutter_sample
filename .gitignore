@@ -46,4 +46,4 @@ app.*.map.json
 /android/key.properties
 
 # 追加
-.env
+.secrets
