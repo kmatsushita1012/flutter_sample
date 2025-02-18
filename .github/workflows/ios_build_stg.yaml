@@ -83,20 +83,18 @@ jobs:
         run: |
           echo $EXPORT_OPTIONS > ios/Runner/ExportOptions.plist
           flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
+      - name: Collect ipa artifacts
+        uses: actions/upload-artifact@v4
         with:
-          appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
-          serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
-          groups: sample
-          file: build/ios/ipa/*.ipa
-          releaseNotes: $GITHUB_REF_NAME
-      # - name: collect ipa artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: release-ipa
-      #     path: build/ios/ipa/*.ipa
-      #     if-no-files-found: error
+          name: release-ipa
+          path: build/ios/ipa/*.ipa
+          if-no-files-found: error
+      - name: Upload to Firebase App Distribution
+        run:
+          firebase appdistribution:distribute build/ios/ipa/flutter_sample.ipa \
+          --app ${{secrets.FIREBASE_DEV_IOS_ID}} \
+          --groups sample \
+          --release-notes  $GITHUB_REF_NAME
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
@@ -117,8 +115,8 @@ jobs:
   #     - name: Upload artifact to Firebase App Distribution
   #       uses: wzieba/Firebase-Distribution-Github-Action@v1
   #       with:
-  #         appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
-  #         serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
+  #         appId: {{secrets.FIREBASE_DEV_IOS_ID}}
+  #         serviceCredentialsFileContent: {{secrets.FIREBASE_DEV_TOKEN}}
   #         groups: sample
-  #         file: build/ios/ipa/*.ipa
+  #         file: flutter_sample.ipa
   #         releaseNotes: $GITHUB_REF_NAME
