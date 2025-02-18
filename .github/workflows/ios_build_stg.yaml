@@ -83,6 +83,14 @@ jobs:
         run: |
           echo $EXPORT_OPTIONS > ios/Runner/ExportOptions.plist
           flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
+          serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
+          groups: sample
+          file: build/ios/ipa/*.ipa
+          releaseNotes: $GITHUB_REF_NAME
       # - name: collect ipa artifacts
       #   uses: actions/upload-artifact@v4
       #   with:
@@ -94,23 +102,23 @@ jobs:
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
-  release:
-    name: Release ipa to Firebase
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      # - name: Get release-ipa from artifacts
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: release-ipa
-      # - name: Debug downloaded artifacts
-      #   run: ls -lh
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
-          serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
-          groups: sample
-          file: build/ios/ipa/*.ipa
-          releaseNotes: $GITHUB_REF_NAME
+  # release:
+  #   name: Release ipa to Firebase
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Get release-ipa from artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: release-ipa
+  #     - name: Debug downloaded artifacts
+  #       run: ls -lh
+  #     - name: Upload artifact to Firebase App Distribution
+  #       uses: wzieba/Firebase-Distribution-Github-Action@v1
+  #       with:
+  #         appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
+  #         serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
+  #         groups: sample
+  #         file: build/ios/ipa/*.ipa
+  #         releaseNotes: $GITHUB_REF_NAME
