@@ -116,5 +116,5 @@ jobs:
           appId: ${{secrets.FIREBASE_DEV_IOS_ID}}
           serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
           groups: sample
-          file: pedometer_app.ipa
+          file: flutter_sample.ipa
           releaseNotes: $GITHUB_REF_NAME
