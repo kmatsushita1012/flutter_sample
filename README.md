@@ -3,6 +3,7 @@
 就活中に某企業の Flutter 技術テストを行ったので、そこで得た経験から自分なりのベストプラクティスをまとめていきたいと思います。著者のレベルとしては大学 3 回生で Flutter の個人開発は 2 件程度、実務経験は無しなので悪しからず。
 
 ## タスク
+
 - プロジェクトの作成
 - コード分析
 - UI/Unit テスト
@@ -10,7 +11,7 @@
 - パイプライン作成
 - 多言語対応
 - UI アーキテクチャ
-※今回は雛形を作成することをメインとするので具体的な実装は省いていきます
+  ※今回は雛形を作成することをメインとするので具体的な実装は省いていきます
 
 ## プロジェクトの作成
 
@@ -50,7 +51,7 @@
 
    - GitHub のコンソールを確認するとプロジェクトの反映が確認できる
    - 反映されてない場合はリモートのデフォルトブランチが`main`になっているのに対しローカルのデフォルトブランチが`master`になっている可能性がある
-   - Settings &rarr; General &rarr; Default branch  で`master`に変更すればいい
+   - Settings &rarr; General &rarr; Default branch で`master`に変更すればいい
 
 ## コード分析
 
@@ -91,5 +92,12 @@
    ```
 
 ## ビルドとテスターへの自動配布
+
 これで保守性や安全性に優れ、正常に動くアプリができた(と仮定する)。
 次にアプリのビルドを行い、テスターに配布するための準備を行う。
+
+## アーキテクチャ
+
+https://qiita.com/trm11tkr/items/0cc55f571c23a19f69fb
+https://github.com/secretused/yumemi_codecheck/blob/main/lib/data/repository_data.dart
+https://zenn.dev/chooyan/articles/eefc76dbd2ba25
