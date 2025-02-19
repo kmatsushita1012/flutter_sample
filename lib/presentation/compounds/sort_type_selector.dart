@@ -35,7 +35,7 @@ class SortTypeSelector extends ConsumerWidget {
               children: [
                 Icon(item.icon()),
                 const SizedBox(width: 8),
-                Text(item.toString(), style: const TextStyle(fontSize: 16)),
+                Text(item.toText(), style: const TextStyle(fontSize: 16)),
               ],
             ),
           );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/domain/repository/git_repo_repository.dart';
+import 'package:flutter_sample/presentation/compounds/git_repo_list_view.dart';
 
 /// 投稿コメント入力用のテキストコントローラープロバイダー
 final queryControllerProvider =
@@ -15,7 +15,7 @@ class QueryField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextField(
       controller: ref.watch(queryControllerProvider),
-      onSubmitted: (_) => ref.invalidate(gitRepoRepositoryProvider),
+      onSubmitted: (_) => ref.invalidate(gitReposProvider),
       decoration: const InputDecoration(
         labelText: 'キーワード',
         border: OutlineInputBorder(),

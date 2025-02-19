@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/domain/repository/git_repo_repository.dart';
+import 'package:flutter_sample/application/repository/git_repo_repository.dart';
 import 'package:flutter_sample/firebase_options.dart';
 import 'package:flutter_sample/infrastructure/mock/mock_git_repo_repository.dart';
 import 'package:flutter_sample/presentation/pages/list_page.dart';

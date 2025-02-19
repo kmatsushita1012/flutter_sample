@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
 
 extension SortTypesExtension on SortTypes {
@@ -19,18 +18,18 @@ extension SortTypesExtension on SortTypes {
   }
 
   //UI用の変換
-  // String toText(BuildContext context) {
-  //   switch (this) {
-  //     case SortTypes.stars:
-  //       return AppLocalizations.of(context)!.stars;
-  //     case SortTypes.forks:
-  //       return AppLocalizations.of(context)!.forks;
-  //     case SortTypes.issues:
-  //       return AppLocalizations.of(context)!.issues;
-  //     case SortTypes.updated:
-  //       return AppLocalizations.of(context)!.last_updated;
-  //     case SortTypes.match:
-  //       return AppLocalizations.of(context)!.best_match;
-  //   }
-  // }
+  String toText() {
+    switch (this) {
+      case SortTypes.stars:
+        return 'スター数';
+      case SortTypes.forks:
+        return 'フォーク数';
+      case SortTypes.issues:
+        return 'イシュー数';
+      case SortTypes.updated:
+        return '更新日順';
+      case SortTypes.match:
+        return 'おすすめ順';
+    }
+  }
 }

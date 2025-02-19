@@ -6,11 +6,37 @@ import 'package:flutter_sample/presentation/compounds/query_field.dart';
 import 'package:flutter_sample/presentation/compounds/sort_type_selector.dart';
 import 'package:flutter_sample/presentation/parts/custom_list_view.dart';
 
-final gitReposProvider = FutureProvider.autoDispose<List<GitRepo>>((ref) async {
-  final query = ref.read(queryControllerProvider).text;
-  final type = ref.read(sortTypeProvider);
-  return ref.watch(gitRepoUsecaseProvider).getGitRepos(query, type);
-});
+abstract class GitRepoNotifier
+    extends StateNotifier<AsyncValue<List<GitRepo>>> {
+  GitRepoNotifier() : super(const AsyncValue.loading());
+
+  Future<void> fetch();
+}
+
+class GitRepoNotifierImpl extends GitRepoNotifier {
+  GitRepoNotifierImpl(this.ref) : super() {
+    fetch();
+  }
+  final Ref ref;
+  @override
+  Future<void> fetch() async {
+    state = const AsyncValue.loading();
+    try {
+      final query = ref.read(queryControllerProvider).text;
+      final type = ref.read(sortTypeProvider);
+      final repos =
+          await ref.read(gitRepoUsecaseProvider).getGitRepos(query, type);
+      state = AsyncValue.data(repos);
+    } on Exception catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
+}
+
+final gitReposProvider =
+    StateNotifierProvider<GitRepoNotifier, AsyncValue<List<GitRepo>>>(
+  (ref) => GitRepoNotifierImpl(ref),
+);
 
 class GitRepoListView extends ConsumerWidget {
   void onSelect(BuildContext context, GitRepo item) {

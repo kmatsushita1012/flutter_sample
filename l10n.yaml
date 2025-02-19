@@ -1,0 +1,3 @@
+arb-dir: lib/l10n #libの中におすすめです、その他の場合、pubspec.yamlにリソース管理しないといけない
+template-arb-file: app_ja.arb # テンプレートのファイル（lib/l10nに格納）、デフォルト言語にしましょう
+output-localization-file: app_localizations.dart# importするファイル名です
