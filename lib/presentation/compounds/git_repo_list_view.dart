@@ -1,64 +1,48 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/application/usecase/git_repo_usecase.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
-import 'package:flutter_sample/presentation/compounds/query_field.dart';
-import 'package:flutter_sample/presentation/compounds/sort_type_selector.dart';
-import 'package:flutter_sample/presentation/parts/custom_list_view.dart';
-
-abstract class GitRepoNotifier
-    extends StateNotifier<AsyncValue<List<GitRepo>>> {
-  GitRepoNotifier() : super(const AsyncValue.loading());
-
-  Future<void> fetch();
-}
-
-class GitRepoNotifierImpl extends GitRepoNotifier {
-  GitRepoNotifierImpl(this.ref) : super() {
-    fetch();
-  }
-  final Ref ref;
-  @override
-  Future<void> fetch() async {
-    state = const AsyncValue.loading();
-    try {
-      final query = ref.read(queryControllerProvider).text;
-      final type = ref.read(sortTypeProvider);
-      final repos =
-          await ref.read(gitRepoUsecaseProvider).getGitRepos(query, type);
-      state = AsyncValue.data(repos);
-    } on Exception catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
-    }
-  }
-}
-
-final gitReposProvider =
-    StateNotifierProvider<GitRepoNotifier, AsyncValue<List<GitRepo>>>(
-  (ref) => GitRepoNotifierImpl(ref),
-);
+import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/presentation/pages/detail_page.dart';
+import 'package:flutter_sample/presentation/parts/list/custom_list_view.dart';
+import 'package:flutter_sample/presentation/provider/provider.dart';
 
 class GitRepoListView extends ConsumerWidget {
-  void onSelect(BuildContext context, GitRepo item) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => DetailPage()),
-    // );
-  }
+  const GitRepoListView({
+    required this.textNotifer,
+    required this.sortTypesController,
+    super.key,
+  });
+
+  final ValueNotifier<String> textNotifer;
+  final ValueNotifier<SortTypes> sortTypesController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(gitReposProvider).when(
+    return ref
+        .watch(
+          gitReposProvider(
+            query: ref.watch(queryFieldNotifierProvider),
+            type: ref.watch(sortTypeProvider),
+          ),
+        )
+        .when(
           data: (items) => CustomListView<GitRepo>(
             items: items,
             pass: (item) => item.name,
-            onSelect: (index) => onSelect(
-              context,
-              items[index],
-            ),
+            onSelect: (index) {
+              ref.read(selectedGitRepoProvider.notifier).set(items[index]);
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const DetailPage(),
+                ),
+              );
+            },
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stack) => Center(child: Text('$error')),
+          skipLoadingOnRefresh: false,
         );
   }
 }

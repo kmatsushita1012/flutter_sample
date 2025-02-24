@@ -21,15 +21,15 @@ extension SortTypesExtension on SortTypes {
   String toText() {
     switch (this) {
       case SortTypes.stars:
-        return 'スター数';
+        return 'Stars';
       case SortTypes.forks:
-        return 'フォーク数';
+        return 'Forks';
       case SortTypes.issues:
-        return 'イシュー数';
+        return 'Issues';
       case SortTypes.updated:
-        return '更新日順';
+        return 'Update';
       case SortTypes.match:
-        return 'おすすめ順';
+        return 'Recommend';
     }
   }
 }

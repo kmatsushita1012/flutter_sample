@@ -1,29 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_sample/domain/value/sort_types.dart';
 import 'package:flutter_sample/presentation/compounds/git_repo_list_view.dart';
 import 'package:flutter_sample/presentation/compounds/query_field.dart';
 import 'package:flutter_sample/presentation/compounds/sort_type_selector.dart';
 
-class ListPage extends StatelessWidget {
+class ListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textEditingController = useTextEditingController();
+    final textNotifier = useState<String>('');
+    final sortTypesNotifer = useState<SortTypes>(SortTypes.match);
+    useEffect(
+      () {
+        void listener() {
+          textNotifier.value = textEditingController.text;
+        }
+
+        textEditingController.addListener(listener);
+        return () => textEditingController.removeListener(listener);
+      },
+      [textEditingController],
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List Page'),
+        title: const Text(
+          '一覧',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        foregroundColor: colorScheme.onPrimary,
+        backgroundColor: colorScheme.primary,
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 64,
-            child: QueryField(),
-          ),
-          SizedBox(
-            height: 64,
-            child: SortTypeSelector(),
-          ),
-          Expanded(
-            child: GitRepoListView(),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          spacing: 8,
+          children: [
+            SizedBox(
+              height: 64,
+              child: Row(
+                spacing: 8,
+                children: [
+                  const Expanded(
+                    child: QueryField(),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: SortTypeSelector(),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: GitRepoListView(
+                textNotifer: textNotifier,
+                sortTypesController: sortTypesNotifer,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
-import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/application/repository/git_repo_repository.dart';
+import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -12,7 +12,6 @@ class GitRepoUsecase {
       _ref.watch(gitRepoRepositoryProvider);
 
   Future<List<GitRepo>> getGitRepos(String query, SortTypes type) async {
-    print("api");
     return _gitRepoRepository.get(query, type);
   }
 }

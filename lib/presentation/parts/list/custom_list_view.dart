@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/presentation/parts/custom_list_tile.dart';
+import 'package:flutter_sample/presentation/parts/list/custom_list_tile.dart';
 
 class CustomListView<T> extends StatelessWidget {
   const CustomListView({
