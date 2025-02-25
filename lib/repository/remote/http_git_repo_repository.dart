@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:flutter_sample/application/repository/git_repo_repository.dart';
+
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/logic/repository/git_repo_repository.dart';
 import 'package:http/http.dart' as http;
 
 class HttpGitRepoRepository implements GitRepoRepository {
@@ -26,8 +27,6 @@ class HttpGitRepoRepository implements GitRepoRepository {
           )
           .toList();
     } else {
-      print(response.statusCode);
-      print(response.body);
       throw Exception('Failed to load repositories');
     }
   }
@@ -37,7 +36,8 @@ extension GitRepoHttpExtension on GitRepo {
   static GitRepo fromApiJson(Map<String, dynamic> json) {
     return GitRepo(
       name: json['name'] as String,
-      userIconPath: json['owner']['avatar_url'] as String,
+      userIconPath:
+          (json['owner'] as Map<String, dynamic>)['avatar_url'] as String,
       language: json['language'] as String?,
       stars: json['stargazers_count'] as int,
       watchers: json['watchers_count'] as int,

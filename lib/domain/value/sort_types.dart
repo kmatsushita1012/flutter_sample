@@ -5,6 +5,4 @@ enum SortTypes {
   stars,
   forks,
   issues;
-
-  
 }

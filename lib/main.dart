@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/application/repository/git_repo_repository.dart';
-import 'package:flutter_sample/firebase_options.dart';
-import 'package:flutter_sample/infrastructure/mock/mock_git_repo_repository.dart';
-import 'package:flutter_sample/infrastructure/remote/http_git_repo_repository.dart';
-import 'package:flutter_sample/presentation/pages/list_page.dart';
+import 'package:flutter_sample/logic/repository/git_repo_repository.dart';
+import 'package:flutter_sample/core/firebase/firebase_options.dart';
+import 'package:flutter_sample/repository/mock/mock_git_repo_repository.dart';
+import 'package:flutter_sample/repository/http/http_git_repo_repository.dart';
+import 'package:flutter_sample/view/pages/list_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

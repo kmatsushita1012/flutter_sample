@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
-import 'package:flutter_sample/presentation/extensions/sort_types_extension.dart';
-import 'package:flutter_sample/presentation/provider/provider.dart';
+import 'package:flutter_sample/view/extensions/sort_types_extension.dart';
+import 'package:flutter_sample/view/provider/provider.dart';
 
 class SortTypeSelector extends ConsumerWidget {
   const SortTypeSelector({super.key});

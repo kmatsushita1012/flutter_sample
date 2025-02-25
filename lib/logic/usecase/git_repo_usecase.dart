@@ -1,6 +1,6 @@
-import 'package:flutter_sample/application/repository/git_repo_repository.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/logic/repository/git_repo_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 final gitRepoUsecaseProvider = Provider<GitRepoUsecase>(GitRepoUsecase.new);

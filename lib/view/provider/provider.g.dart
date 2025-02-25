@@ -173,7 +173,7 @@ class _GitReposProviderElement
   SortTypes get type => (origin as GitReposProvider).type;
 }
 
-String _$selectedGitRepoHash() => r'a60710974bb26e2e65a43a0a96899849f864e99b';
+String _$selectedGitRepoHash() => r'c7413bc6c57842e5941dc82da105ecb60f60387f';
 
 /// See also [SelectedGitRepo].
 @ProviderFor(SelectedGitRepo)

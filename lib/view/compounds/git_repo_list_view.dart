@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
-import 'package:flutter_sample/presentation/pages/detail_page.dart';
-import 'package:flutter_sample/presentation/parts/list/custom_list_view.dart';
-import 'package:flutter_sample/presentation/provider/provider.dart';
+import 'package:flutter_sample/view/pages/detail_page.dart';
+import 'package:flutter_sample/view/parts/list/custom_list_view.dart';
+import 'package:flutter_sample/view/provider/provider.dart';
 
 class GitRepoListView extends ConsumerWidget {
   const GitRepoListView({

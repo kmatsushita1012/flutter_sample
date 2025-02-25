@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/presentation/parts/detail/count_card.dart';
-import 'package:flutter_sample/presentation/parts/detail/custom_grid_view.dart';
-import 'package:flutter_sample/presentation/parts/detail/fade_icon.dart';
-import 'package:flutter_sample/presentation/parts/detail/fade_title.dart';
-import 'package:flutter_sample/presentation/parts/detail/text_tile.dart';
-import 'package:flutter_sample/presentation/provider/provider.dart';
+import 'package:flutter_sample/view/parts/detail/count_card.dart';
+import 'package:flutter_sample/view/parts/detail/custom_grid_view.dart';
+import 'package:flutter_sample/view/parts/detail/fade_icon.dart';
+import 'package:flutter_sample/view/parts/detail/fade_title.dart';
+import 'package:flutter_sample/view/parts/detail/text_tile.dart';
+import 'package:flutter_sample/view/provider/provider.dart';
 
 class DetailPage extends ConsumerStatefulWidget {
   const DetailPage({super.key});
@@ -42,7 +42,7 @@ class DetailPageState extends ConsumerState<DetailPage>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final item = ref.watch(selectedGitRepoProvider.notifier).get();
+    final item = ref.watch(selectedGitRepoProvider);
     if (item == null) {
       return const Center(
         child: Text('No Repository Found.'),

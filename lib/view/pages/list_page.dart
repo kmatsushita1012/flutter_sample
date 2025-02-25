@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sample/domain/value/sort_types.dart';
-import 'package:flutter_sample/presentation/compounds/git_repo_list_view.dart';
-import 'package:flutter_sample/presentation/compounds/query_field.dart';
-import 'package:flutter_sample/presentation/compounds/sort_type_selector.dart';
+import 'package:flutter_sample/view/compounds/git_repo_list_view.dart';
+import 'package:flutter_sample/view/compounds/query_field.dart';
+import 'package:flutter_sample/view/compounds/sort_type_selector.dart';
 
 class ListPage extends HookWidget {
   @override
@@ -38,12 +38,12 @@ class ListPage extends HookWidget {
         child: Column(
           spacing: 8,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 64,
               child: Row(
                 spacing: 8,
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: QueryField(),
                   ),
                   AspectRatio(
