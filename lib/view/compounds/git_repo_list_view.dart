@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
-import 'package:flutter_sample/domain/value/sort_types.dart';
 import 'package:flutter_sample/view/pages/detail_page.dart';
 import 'package:flutter_sample/view/parts/list/custom_list_view.dart';
 import 'package:flutter_sample/view/provider/provider.dart';
 
 class GitRepoListView extends ConsumerWidget {
   const GitRepoListView({
-    required this.textNotifer,
-    required this.sortTypesController,
     super.key,
   });
-
-  final ValueNotifier<String> textNotifer;
-  final ValueNotifier<SortTypes> sortTypesController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/logic/repository/git_repo_repository.dart';
 import 'package:flutter_sample/core/firebase/firebase_options.dart';
-import 'package:flutter_sample/repository/mock/mock_git_repo_repository.dart';
+import 'package:flutter_sample/logic/interface/git_repo_repository.dart';
 import 'package:flutter_sample/repository/http/http_git_repo_repository.dart';
+import 'package:flutter_sample/repository/mock/mock_git_repo_repository.dart';
 import 'package:flutter_sample/view/pages/list_page.dart';
 
 void main() async {
@@ -15,14 +15,12 @@ void main() async {
   //flutter run --dart-define=USE_MOCK=true
   // ignore: do_not_use_environment
   const useMock = bool.fromEnvironment('USE_MOCK');
-
-  final gitRepoRepository =
-      useMock ? MockGitRepoRepository() : HttpGitRepoRepository();
-
   runApp(
     ProviderScope(
       overrides: [
-        gitRepoRepositoryProvider.overrideWithValue(gitRepoRepository),
+        gitRepoRepositoryProvider.overrideWithValue(
+          useMock ? MockGitRepoRepository() : HttpGitRepoRepository(),
+        ),
       ],
       child: const MyApp(),
     ),
