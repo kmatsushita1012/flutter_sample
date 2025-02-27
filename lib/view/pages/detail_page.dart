@@ -35,7 +35,7 @@ class DetailPage extends HookConsumerWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBar(title: '詳細'),
+      appBar: const CustomAppBar(title: '詳細'),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(16),

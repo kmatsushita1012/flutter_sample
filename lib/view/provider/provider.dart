@@ -1,6 +1,6 @@
-import 'package:flutter_sample/logic/usecase/git_repo_usecase.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_type.dart';
+import 'package:flutter_sample/logic/usecase/git_repo_usecase.dart';
 import 'package:flutter_sample/shared/custom_widgets.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -39,7 +39,7 @@ class SelectedGitRepo extends _$SelectedGitRepo {
 
 final queryFieldNotifierProvider =
     StateNotifierProvider<TextEditingNotifier, String>(
-  (ref) => TextEditingNotifier(''),
+  (ref) => TextEditingNotifier(),
 );
 
 final sortTypeProvider = StateProvider<SortType>(

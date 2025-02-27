@@ -1,6 +1,6 @@
-import 'package:flutter_sample/logic/interface/git_repo_repository.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
 import 'package:flutter_sample/domain/value/sort_type.dart';
+import 'package:flutter_sample/logic/interface/git_repo_repository.dart';
 
 class MockGitRepoRepository extends GitRepoRepository {
   int count = 0;

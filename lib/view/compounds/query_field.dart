@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/view/provider/provider.dart';
 import 'package:flutter_sample/shared/custom_widgets.dart';
+import 'package:flutter_sample/view/provider/provider.dart';
 
 /// 投稿コメント入力用のテキストコントローラープロバイダー
 

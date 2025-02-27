@@ -8,9 +8,9 @@ import 'package:flutter_sample/view/parts/shared/custom_app_bar.dart';
 class ListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(title: 'リスト'),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(8),
         child: Column(
           spacing: 8,
