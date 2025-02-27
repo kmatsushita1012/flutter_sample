@@ -6,6 +6,7 @@ import 'package:flutter_sample/logic/interface/git_repo_repository.dart';
 import 'package:flutter_sample/repository/http/http_git_repo_repository.dart';
 import 'package:flutter_sample/repository/mock/mock_git_repo_repository.dart';
 import 'package:flutter_sample/view/pages/list_page.dart';
+import 'package:flutter_sample/view/pages/sample_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ListPage(),
+      home: SamplePage(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
+import 'package:flutter_sample/view/navigation/page_navigation.dart';
 import 'package:flutter_sample/view/pages/detail_page.dart';
-import 'package:flutter_sample/view/parts/list/custom_list_view.dart';
+import 'package:flutter_sample/view/parts/list/custom_list_tile.dart';
 import 'package:flutter_sample/view/provider/provider.dart';
 
 class GitRepoListView extends ConsumerWidget {
@@ -21,16 +21,16 @@ class GitRepoListView extends ConsumerWidget {
           ),
         )
         .when(
-          data: (items) => CustomListView<GitRepo>(
-            items: items,
-            pass: (item) => item.name,
-            onSelect: (index) {
-              ref.read(selectedGitRepoProvider.notifier).set(items[index]);
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (context) => const DetailPage(),
-                ),
+          data: (items) => ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return CustomListTile(
+                title: item.name,
+                onTap: () {
+                  ref.read(selectedGitRepoProvider.notifier).set(item);
+                  pushPage<void>(context, DetailPage());
+                },
               );
             },
           ),

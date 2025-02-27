@@ -1,6 +1,6 @@
 import 'package:flutter_sample/logic/usecase/git_repo_usecase.dart';
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
-import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/domain/value/sort_type.dart';
 import 'package:flutter_sample/shared/custom_widgets.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,7 +11,7 @@ part 'provider.g.dart';
 Future<List<GitRepo>> gitRepos(
   Ref ref, {
   required String query,
-  required SortTypes type,
+  required SortType type,
 }) {
   return ref.watch(gitRepoUsecaseProvider).getGitRepos(query, type);
 }
@@ -42,6 +42,6 @@ final queryFieldNotifierProvider =
   (ref) => TextEditingNotifier(''),
 );
 
-final sortTypeProvider = StateProvider<SortTypes>(
-  (ref) => SortTypes.match,
+final sortTypeProvider = StateProvider<SortType>(
+  (ref) => SortType.match,
 );

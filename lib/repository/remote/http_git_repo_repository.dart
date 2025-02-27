@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_sample/domain/entity/git_repo/git_repo.dart';
-import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/domain/value/sort_type.dart';
 import 'package:flutter_sample/logic/interface/git_repo_repository.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,7 +10,7 @@ class HttpGitRepoRepository implements GitRepoRepository {
   final String baseUrl;
 
   @override
-  Future<List<GitRepo>> get(String query, SortTypes type) async {
+  Future<List<GitRepo>> get(String query, SortType type) async {
     final response = await http.get(
       Uri.parse(
         '$baseUrl/search/repositories?q=$query&sort=${type.toQueryString()}',
@@ -47,12 +47,12 @@ extension GitRepoHttpExtension on GitRepo {
   }
 }
 
-extension SortTypesHttpExtension on SortTypes {
+extension SortTypesHttpExtension on SortType {
   //クエリ用の変換
   String? toQueryString() {
-    if (this == SortTypes.match) {
+    if (this == SortType.match) {
       return null;
-    } else if (this == SortTypes.issues) {
+    } else if (this == SortType.issues) {
       return 'help-wanted-issues';
     } else {
       return name;

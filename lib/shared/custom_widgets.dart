@@ -2,21 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TextEditingNotifier extends StateNotifier<String> {
-  TextEditingNotifier(super.value)
+  TextEditingNotifier([super.value = ''])
       : _controller = TextEditingController(text: value);
 
   final TextEditingController _controller;
   TextEditingController get controller => _controller;
 
-  void submit() {
+  void update() {
     state = _controller.text;
   }
+
+  void clear() {
+    _controller.clear();
+  }
 }
+
+enum TextEditingUpdateType { onSubmitted, onChanged, never }
 
 class NotifierTextField extends TextField {
   NotifierTextField({
     required this.notifier,
-    bool updateNotifierOnSubmit = true,
+    TextEditingUpdateType updateType = TextEditingUpdateType.onSubmitted,
     super.key,
     super.focusNode,
     super.decoration,
@@ -41,9 +47,8 @@ class NotifierTextField extends TextField {
     super.expands,
     super.maxLength,
     super.maxLengthEnforcement,
-    super.onChanged,
     super.onEditingComplete,
-    ValueChanged<String>? onSubmitted,
+    void Function(String)? onSubmitted,
     super.inputFormatters,
     super.enabled,
     super.cursorWidth,
@@ -58,6 +63,7 @@ class NotifierTextField extends TextField {
     super.enableInteractiveSelection = true,
     super.selectionControls,
     super.onTap,
+    void Function(String)? onChanged,
     super.onTapOutside,
     super.mouseCursor,
     super.buildCounter,
@@ -72,11 +78,19 @@ class NotifierTextField extends TextField {
   }) : super(
           controller: notifier.controller,
           onSubmitted: (text) {
-            if (updateNotifierOnSubmit) {
-              notifier.submit();
+            if (updateType == TextEditingUpdateType.onSubmitted) {
+              notifier.update();
             }
             if (onSubmitted != null) {
               onSubmitted(text);
+            }
+          },
+          onChanged: (text) {
+            if (updateType == TextEditingUpdateType.onChanged) {
+              notifier.update();
+            }
+            if (onChanged != null) {
+              onChanged(text);
             }
           },
         );
@@ -86,17 +100,19 @@ class NotifierTextField extends TextField {
 class NotifierSubmitButton extends ElevatedButton {
   NotifierSubmitButton({
     required this.notifier,
-    super.child,
-    super.key,
     void Function()? onPressed,
     super.onLongPress,
+    super.onHover,
+    super.onFocusChange,
     super.style,
     super.focusNode,
     super.autofocus = false,
-    super.clipBehavior = Clip.none,
+    super.clipBehavior,
+    super.statesController,
+    super.child,
   }) : super(
           onPressed: () {
-            notifier.submit();
+            notifier.update();
             if (onPressed != null) {
               onPressed();
             }

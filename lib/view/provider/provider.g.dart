@@ -41,7 +41,7 @@ class GitReposFamily extends Family<AsyncValue<List<GitRepo>>> {
   /// See also [gitRepos].
   GitReposProvider call({
     required String query,
-    required SortTypes type,
+    required SortType type,
   }) {
     return GitReposProvider(
       query: query,
@@ -79,7 +79,7 @@ class GitReposProvider extends AutoDisposeFutureProvider<List<GitRepo>> {
   /// See also [gitRepos].
   GitReposProvider({
     required String query,
-    required SortTypes type,
+    required SortType type,
   }) : this._internal(
           (ref) => gitRepos(
             ref as GitReposRef,
@@ -110,7 +110,7 @@ class GitReposProvider extends AutoDisposeFutureProvider<List<GitRepo>> {
   }) : super.internal();
 
   final String query;
-  final SortTypes type;
+  final SortType type;
 
   @override
   Override overrideWith(
@@ -160,7 +160,7 @@ mixin GitReposRef on AutoDisposeFutureProviderRef<List<GitRepo>> {
   String get query;
 
   /// The parameter `type` of this provider.
-  SortTypes get type;
+  SortType get type;
 }
 
 class _GitReposProviderElement
@@ -170,7 +170,7 @@ class _GitReposProviderElement
   @override
   String get query => (origin as GitReposProvider).query;
   @override
-  SortTypes get type => (origin as GitReposProvider).type;
+  SortType get type => (origin as GitReposProvider).type;
 }
 
 String _$selectedGitRepoHash() => r'c7413bc6c57842e5941dc82da105ecb60f60387f';

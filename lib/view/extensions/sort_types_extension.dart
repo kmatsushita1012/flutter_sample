@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/domain/value/sort_types.dart';
+import 'package:flutter_sample/domain/value/sort_type.dart';
 
-extension SortTypesExtension on SortTypes {
-  IconData icon() {
+extension SortTypesExtension on SortType {
+  IconData get icon {
     switch (this) {
-      case SortTypes.stars:
+      case SortType.stars:
         return Icons.star;
-      case SortTypes.forks:
+      case SortType.forks:
         return Icons.fork_right;
-      case SortTypes.issues:
+      case SortType.issues:
         return Icons.adjust;
-      case SortTypes.updated:
+      case SortType.updated:
         return Icons.update;
-      case SortTypes.match:
+      case SortType.match:
         return Icons.thumb_up;
     }
   }
 
   //UI用の変換
-  String toText() {
+  String get text {
     switch (this) {
-      case SortTypes.stars:
+      case SortType.stars:
         return 'Stars';
-      case SortTypes.forks:
+      case SortType.forks:
         return 'Forks';
-      case SortTypes.issues:
+      case SortType.issues:
         return 'Issues';
-      case SortTypes.updated:
+      case SortType.updated:
         return 'Update';
-      case SortTypes.match:
+      case SortType.match:
         return 'Recommend';
     }
   }

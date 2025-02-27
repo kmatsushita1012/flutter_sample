@@ -1,5 +1,5 @@
 //ソート方法
-enum SortTypes {
+enum SortType {
   match,
   updated,
   stars,
